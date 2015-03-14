@@ -1,0 +1,23 @@
+{
+  "manifest_version": 2,
+
+  "name": "History Filter",
+  "description": "This extension cleans up your history.",
+  "version": "1.0",
+  "options_page": "options.html",
+
+  "browser_action": {
+    "default_icon": "icon.png",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "page": "background.html"
+  },
+
+  "permissions": [
+    "storage",
+    "history",
+    "background"
+  ]
+}

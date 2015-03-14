@@ -1,0 +1,56 @@
+body {
+	width: 350px;
+	overflow-x: hidden;
+	background-color: #EFEFEF;
+}
+
+input {
+	width: 10px; 
+	height: 10px;
+}
+
+tr:nth-child(odd) {
+    background-color: #F8F8F8;
+}
+
+td:nth-child(odd) {
+    width: 290px;
+}
+
+td:nth-child(even) {
+    background-color: #EFEFEF;
+    width: 10px;
+}
+
+td{
+	overflow: hidden;
+}
+
+.button{text-decoration:none; text-align:center; 
+ padding:11px 20px; 
+ border:none; 
+  
+ font:18px Arial, Helvetica, sans-serif; 
+ font-weight:bold; 
+ color:#E5FFFF; 
+ background:#3ba4c7;
+  
+ }.button:hover{
+ padding:11px 20px; 
+ border:none; 
+  
+ font:18px Arial, Helvetica, sans-serif; 
+ font-weight:bold; 
+ color:#E5FFFF; 
+ background:#1982a5; 
+  
+ }.button:active{
+ padding:11px 20px; 
+ border:none; 
+  
+ font:18px Arial, Helvetica, sans-serif; 
+ font-weight:bold; 
+ color:#E5FFFF; 
+ background:#3ba4c7; 
+  
+ }

@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Filter and Clean History</title>
+    <link rel="stylesheet" type="text/css" href="popup.css">
+    <script src="jquery-1.11.1.min.js"></script>
+    <script src="popup.js"></script>
+  </head>
+  <body>
+    <br />
+    <div style="text-align:center; border-bottom:1px solid #AAAAAA;">
+      <a href="#" class="button" id="filter">Filter History</a>
+      <br/><br/>
+      <a id="options" href="#" style="text-decoration:none; color:#CCCCCC;">Options</a>
+    </div>
+    <h3 style="margin-left:20px; font-weight:bold;">Words to Filter</h3>
+    <table id="listofwords" style="table-layout:fixed; margin-left:20px; width:300px;"></table>
+    <br />
+    <form>
+      <input id="word" maxlength="50"style="margin-left:20px; width:250px; height:15px;"></input>
+      <button id="storeThings" type="submit" style="border:none; font-weight:bold; color:#E5FFFF; background:#3ba4c7; height:23px;">Add</button>
+    </form>
+    <div style="margin-left:20px;">
+      Automatic Filtering: <button id="changeInterval"></button>
+      <br />
+      <form>
+        Set Interval (minutes): <input id="interval" maxlength="10" style="width:80px; height:15px;"></input>
+        <button id="interval2" type="submit">Set</button>
+      </form>
+    </div>
+  </body>
+</html>
