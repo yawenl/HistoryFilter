@@ -11,3 +11,4 @@ Used Google's storage, history APIs.
 
 ## Contributors
 Carl Chen, Qingzhou He, Yawen Luo
+The project was implemented in MHacks III, in January 2014
