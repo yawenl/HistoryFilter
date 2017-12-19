@@ -10,5 +10,5 @@ This is a simple Chrome extension that deleted web histories according to user-d
 Used Google's storage, history APIs.
 
 ## Contributors
-Carl Chen, Qingzhou He, Yawen Luo
-The project was implemented in MHacks III, in January 2014
+Carl Chen, Qingzhou He, Yawen Luo.
+The project was implemented in MHacks III, in January 2014.
