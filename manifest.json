@@ -4,7 +4,6 @@
   "name": "History Filter",
   "description": "This extension cleans up your history.",
   "version": "1.0",
-  "options_page": "options.html",
 
   "browser_action": {
     "default_icon": "icon.png",

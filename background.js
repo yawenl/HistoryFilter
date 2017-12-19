@@ -1,7 +1,6 @@
 var stringArray = [];
 
 var pollInterval; // 30 seconds, in milliseconds
-// var pollInterval = 1000 * 60 * 10; // 10 minute, in milliseconds
 chrome.storage.local.set({'interval': 30000}, function(){});
 
 startRequest();
@@ -37,5 +36,6 @@ function startRequest() {
 	chrome.storage.local.get('interval',function(result){
 		pollInterval = result['interval'];
 	});
+	// run filtering function with specified frequency
 	timerID = window.setTimeout(startRequest, pollInterval);
 }

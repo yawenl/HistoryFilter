@@ -1,4 +1,5 @@
 function updateFilter(wordfilterlist) {
+	// start time sets to 0 because the event needs to be handled immediately
 	for(var i = 0; i<wordfilterlist.length; ++i){
 		chrome.history.search({
 	      'text': wordfilterlist[i],
@@ -12,16 +13,49 @@ function updateFilter(wordfilterlist) {
 	}
 }
 
+function removeWord( e ) {
+	var array = [];
+	chrome.storage.local.get('searchterms', function (result) {
+		array = result['searchterms'];
+    	for (var i=0; i<array.length; ++i){
+    		if (e == array[i]){
+    			array.splice(i, 1);
+    			chrome.storage.local.set({'searchterms': array}, function () {
+			    	location.reload();
+				});
+    			return;
+    		}
+    	}
+	});
+}
+
+function storeWord(e) {
+	chrome.storage.local.get('searchterms', function (result) {
+		var array = result['searchterms'];
+		for (var i=0; i<array.length; ++i){
+    		if (e == array[i]){
+    			// do nothing if the keyword already exists
+    			return;
+    		}
+    	}
+    	array.push(e);
+    	chrome.storage.local.set({'searchterms': array}, function () {
+	    	location.reload();
+		});
+	});
+}
+
+/* ------------------ Setup: get stored user data ------------------ */
 var obj_Temp = {};
 var stringArray = [];
 chrome.storage.local.get('searchterms', function (result) {
 	if (typeof result['searchterms'] === 'object') {
 	} else {
-		chrome.storage.local.set({'searchterms': ['none']});
 		chrome.storage.local.set({'searchterms': []});
 	}
 	var array = result['searchterms'];
 	stringArray = array;
+	// display the keyword list
 	for (var i=0; i<array.length; i++){
 		cell = document.createElement("td");
     	xButton = document.createElement("input");
@@ -38,10 +72,12 @@ chrome.storage.local.get('searchterms', function (result) {
 		list.appendChild(newRow);
 	}
 });
+
 chrome.storage.local.get('interval', function (result) {
 	document.getElementById("interval").value = (result['interval']/60/1000);
 });
 
+/* ------------------ Triggered events handling implementation ------------------ */
 $(document).ready ( function () {
 
 	$("#filter").click ( function() {
@@ -65,37 +101,8 @@ $(document).ready ( function () {
 		removeWord(string);
 	}); 
 
-	function removeWord( e ) {
-		var array = [];
-		chrome.storage.local.get('searchterms', function (result) {
-			array = result['searchterms'];
-	    	for (var i=0; i<array.length; ++i){
-	    		if (e == array[i]){
-	    			array.splice(i, 1);
-	    			chrome.storage.local.set({'searchterms': array}, function () {
-				    	location.reload();
-					});
-	    			return;
-	    		}
-	    	}
-		});
-	}
-
-	function storeWord(e) {
-		chrome.storage.local.get('searchterms', function (result) {
-			var array = result['searchterms'];
-			for (var i=0; i<array.length; ++i){
-	    		if (e == array[i]){
-	    			return;
-	    		}
-	    	}
-	    	array.push(e);
-	    	chrome.storage.local.set({'searchterms': array}, function () {
-		    	location.reload();
-			});
-		});
-	}
-
+	
+	// enable or disable auto filtering feature based on user's stored data
 	chrome.storage.local.get('auto',function(returnedvalue){
 		var result = returnedvalue['auto'];
 		if(result){
@@ -106,6 +113,7 @@ $(document).ready ( function () {
 		}
 	});
 
+	// enable or disable auto filtering feature once user click on the button
 	$("#changeInterval").click ( function() {
 		chrome.storage.local.get('auto',function(returnedvalue){
 			var result = returnedvalue['auto'];
